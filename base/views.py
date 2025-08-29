@@ -2,9 +2,9 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import api_view
-from base.models import Task , Priority , Category
+from base.models import Task  , Category
 from base.models import Profile
-from .serializers import taskSerializer , profileSerializer , categorySerializer , prioritySerializer
+from .serializers import taskSerializer , profileSerializer , categorySerializer 
 from django.shortcuts import get_object_or_404
 
 
@@ -23,13 +23,10 @@ class  ProfileViewSets(viewsets.ModelViewSet):
     
 class CategoryViewSets(viewsets.ModelViewSet):
  queryset=Category.objects.all()
-serializer_class=categorySerializer
+ serializer_class=categorySerializer
 
 
 
-class PriorityViewSets(viewsets.ModelViewSet):
-   queryset=Priority.objects.all()
-   serializer_class=prioritySerializer
 
 
 

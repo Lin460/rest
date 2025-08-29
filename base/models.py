@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Category (models.Model):
@@ -14,20 +15,23 @@ class Profile(models.Model):
     
 
 
-class Priority(models.Model):
-    title=models.CharField(max_length=200)
-    level=models.CharField(max_length=200)
-
 
 
 class Task(models.Model):
-    title=models.CharField(max_length=200)
+
+    Priority_Choices=[
+        ('low','Low'),
+        ('medium','Medium'),
+        ('high','High')
+    ]
+    title=models.CharField(max_length=200, default='1')
     description=models.CharField(max_length=200 , blank=True,)
-    created_at=models.DateField(auto_now_add=True )
+    created_at=models.DateField( default=timezone.now)
     due_date=models.DateField(null=True , blank=True)
     completed = models.BooleanField(default=False)
     category=models.ForeignKey(Category, on_delete=models.SET_NULL , null=True , blank= True)
-    priority=models.ForeignKey(Priority , on_delete=models.SET_NULL , null=True , blank=True)
+    priority=models.CharField(max_length=15 , choices=Priority_Choices , default='medium')
+
 
 
 
